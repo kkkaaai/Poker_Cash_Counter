@@ -60,7 +60,7 @@ export default function SettlementPage() {
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <p className="text-gray-400">Calculating settlements...</p>
+        <p className="text-gray-500">Calculating settlements...</p>
       </div>
     );
   }
@@ -68,8 +68,8 @@ export default function SettlementPage() {
   return (
     <div className="min-h-dvh flex flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-800">
-        <Link href="/banker" className="text-gray-400 text-sm py-2 pr-4 -ml-2 focus-visible:ring-2 focus-visible:ring-emerald-500 rounded">&larr; Back</Link>
+      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <Link href="/banker" className="text-gray-500 text-sm py-2 pr-4 -ml-2 focus-visible:ring-2 focus-visible:ring-emerald-500 rounded">&larr; Back</Link>
         <h1 className="font-bold text-lg">Settlement</h1>
         <div className="w-12" />
       </header>
@@ -77,7 +77,7 @@ export default function SettlementPage() {
       <div className="flex-1 overflow-y-auto">
         {/* Player Results */}
         <div className="px-4 pt-4 max-w-2xl mx-auto w-full">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             Results
           </h2>
           {cashedOutPlayers.length === 0 ? (
@@ -85,14 +85,14 @@ export default function SettlementPage() {
           ) : (
             <div className="space-y-2">
               {cashedOutPlayers.map((p) => (
-                <div key={p.id} className="p-4 bg-gray-800 rounded-xl flex items-center justify-between">
+                <div key={p.id} className="p-4 bg-gray-100 rounded-xl flex items-center justify-between">
                   <div>
                     <div className="font-semibold">{p.name}</div>
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-gray-500">
                       In: £{p.totalBuyIn} | Out: £{p.cashout}
                     </div>
                   </div>
-                  <div className={`font-bold text-xl ${p.net! >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  <div className={`font-bold text-xl ${p.net! >= 0 ? "text-emerald-600" : "text-red-500"}`}>
                     {formatNet(p.net!)}
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function SettlementPage() {
 
         {/* Transfers */}
         <div className="px-4 pt-6 pb-4 max-w-2xl mx-auto w-full">
-          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             Who Pays Who
           </h2>
           <SettlementList transfers={transfers} />
@@ -111,21 +111,21 @@ export default function SettlementPage() {
       </div>
 
       {/* New Game Button */}
-      <div className="px-4 py-4 border-t border-gray-800 max-w-2xl mx-auto w-full">
-        {resetError && <p className="text-red-400 text-sm text-center mb-3">{resetError}</p>}
+      <div className="px-4 py-4 border-t border-gray-200 max-w-2xl mx-auto w-full">
+        {resetError && <p className="text-red-500 text-sm text-center mb-3">{resetError}</p>}
         {confirmingNewGame ? (
           <div className="space-y-3">
-            <p className="text-center text-gray-300 text-sm">Start a new game? This will clear all current data.</p>
+            <p className="text-center text-gray-600 text-sm">Start a new game? This will clear all current data.</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setConfirmingNewGame(false)}
-                className="flex-1 h-14 rounded-xl bg-gray-700 text-lg font-semibold active:bg-gray-600 focus-visible:ring-2 focus-visible:ring-gray-500"
+                className="flex-1 h-14 rounded-xl bg-gray-200 text-lg font-semibold active:bg-gray-300 focus-visible:ring-2 focus-visible:ring-gray-400"
               >
                 Cancel
               </button>
               <button
                 onClick={handleNewGame}
-                className="flex-1 h-14 rounded-xl bg-red-600 text-lg font-semibold active:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500"
+                className="flex-1 h-14 rounded-xl bg-red-600 text-white text-lg font-semibold active:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500"
               >
                 Confirm
               </button>
@@ -134,7 +134,7 @@ export default function SettlementPage() {
         ) : (
           <button
             onClick={() => setConfirmingNewGame(true)}
-            className="w-full h-14 rounded-xl bg-emerald-600 text-lg font-semibold active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="w-full h-14 rounded-xl bg-emerald-600 text-white text-lg font-semibold active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             New Game
           </button>

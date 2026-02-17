@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-dvh flex flex-col items-center justify-center px-6 gap-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight">Poker Tracker</h1>
-        <p className="text-gray-400 mt-2">Track your game night</p>
+        <p className="text-gray-500 mt-2">Track your game night</p>
       </div>
 
       <div className="flex flex-col gap-4 w-full max-w-xs">

@@ -36,17 +36,17 @@ export default function PendingRequest({ id, playerName, amount, onSuccess }: Pe
   }
 
   return (
-    <div className="flex items-center justify-between p-4 bg-yellow-900/20 border border-yellow-700/30 rounded-xl">
+    <div className="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
       <div>
         <div className="font-semibold">{playerName}</div>
-        <div className="text-yellow-400 font-bold">£{amount}</div>
-        {error && <div className="text-red-400 text-xs mt-1">{error}</div>}
+        <div className="text-yellow-600 font-bold">£{amount}</div>
+        {error && <div className="text-red-500 text-xs mt-1">{error}</div>}
       </div>
       <div className="flex gap-2">
         <button
           onClick={handleReject}
           disabled={loading}
-          className="h-10 px-4 rounded-lg bg-gray-700 text-sm font-medium active:bg-gray-600 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-gray-500"
+          className="h-10 px-4 rounded-lg bg-gray-200 text-sm font-medium active:bg-gray-300 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-gray-400"
         >
           Reject
         </button>
@@ -54,7 +54,7 @@ export default function PendingRequest({ id, playerName, amount, onSuccess }: Pe
           onClick={handleConfirm}
           disabled={loading}
           aria-label={loading ? "Processing" : "Confirm buy-in"}
-          className="h-10 px-4 rounded-lg bg-emerald-600 text-sm font-medium active:bg-emerald-700 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="h-10 px-4 rounded-lg bg-emerald-600 text-white text-sm font-medium active:bg-emerald-700 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           {loading ? "..." : "Confirm"}
         </button>

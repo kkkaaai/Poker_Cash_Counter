@@ -76,8 +76,8 @@ export default function PlayerPage() {
   return (
     <div className="min-h-dvh flex flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-800">
-        <Link href="/" className="text-gray-400 text-sm py-2 pr-4 -ml-2 focus-visible:ring-2 focus-visible:ring-emerald-500 rounded">&larr; Back</Link>
+      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <Link href="/" className="text-gray-500 text-sm py-2 pr-4 -ml-2 focus-visible:ring-2 focus-visible:ring-emerald-500 rounded">&larr; Back</Link>
         <h1 className="font-bold text-lg">Players</h1>
         <div className="w-12" />
       </header>
@@ -94,17 +94,17 @@ export default function PlayerPage() {
             onKeyDown={(e) => e.key === "Enter" && handleJoin()}
             placeholder="Enter your name"
             maxLength={30}
-            className="flex-1 h-12 bg-gray-800 rounded-xl px-4 outline-none focus:ring-2 focus:ring-emerald-500"
+            className="flex-1 h-12 bg-gray-100 rounded-xl px-4 outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <button
             onClick={handleJoin}
             disabled={joining || !name.trim()}
-            className="h-12 px-5 rounded-xl bg-emerald-600 font-medium disabled:opacity-40 active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="h-12 px-5 rounded-xl bg-emerald-600 text-white font-medium disabled:opacity-40 active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             {joining ? "Joining..." : "Join"}
           </button>
         </div>
-        {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </div>
 
       {/* Player List */}
@@ -120,31 +120,31 @@ export default function PlayerPage() {
 
       {/* Choose Action Modal */}
       {modal === "choose" && selectedPlayer && (
-        <div className="fixed inset-0 bg-black/70 flex items-end justify-center z-50" onClick={() => setModal(null)}>
+        <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50" onClick={() => setModal(null)}>
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="choose-action-title"
-            className="bg-gray-900 rounded-t-3xl w-full max-w-md p-6 pb-10"
+            className="bg-white rounded-t-3xl w-full max-w-md p-6 pb-10"
             onClick={(e) => e.stopPropagation()}
           >
             <h2 id="choose-action-title" className="text-xl font-bold mb-4">{selectedPlayer.name}</h2>
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setModal("buyin")}
-                className="h-14 rounded-xl bg-emerald-600 text-lg font-semibold active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="h-14 rounded-xl bg-emerald-600 text-white text-lg font-semibold active:bg-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500"
               >
                 Buy In
               </button>
               <button
                 onClick={() => setModal("cashout")}
-                className="h-14 rounded-xl bg-blue-600 text-lg font-semibold active:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="h-14 rounded-xl bg-blue-600 text-white text-lg font-semibold active:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 Cash Out
               </button>
               <button
                 onClick={() => setModal(null)}
-                className="h-14 rounded-xl bg-gray-800 text-lg font-medium text-gray-300 active:bg-gray-700 focus-visible:ring-2 focus-visible:ring-gray-500"
+                className="h-14 rounded-xl bg-gray-100 text-lg font-medium text-gray-600 active:bg-gray-200 focus-visible:ring-2 focus-visible:ring-gray-400"
               >
                 Cancel
               </button>
