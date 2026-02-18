@@ -57,6 +57,10 @@ export default function SettlementPage() {
     .filter((p) => p.cashout !== null)
     .sort((a, b) => (b.net || 0) - (a.net || 0));
 
+  const totalIn = cashedOutPlayers.reduce((sum, p) => sum + p.totalBuyIn, 0);
+  const totalOut = cashedOutPlayers.reduce((sum, p) => sum + (p.cashout || 0), 0);
+  const difference = totalOut - totalIn;
+
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
@@ -75,6 +79,35 @@ export default function SettlementPage() {
       </header>
 
       <div className="flex-1 overflow-y-auto">
+        {/* Game Summary */}
+        {cashedOutPlayers.length > 0 && (
+          <div className="px-4 pt-4 max-w-2xl mx-auto w-full">
+            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-gray-500">Total Buy-ins</span>
+                <span className="font-bold">£{totalIn}</span>
+              </div>
+              <div className="flex justify-between text-sm mb-2">
+                <span className="text-gray-500">Total Cash-outs</span>
+                <span className="font-bold">£{totalOut}</span>
+              </div>
+              <div className="border-t border-gray-200 pt-2 mt-2 flex justify-between text-sm">
+                <span className="text-gray-500">Difference</span>
+                <span className={`font-bold ${difference === 0 ? "text-emerald-600" : "text-red-500"}`}>
+                  {difference === 0 ? "Balanced" : difference > 0 ? `£${difference} over` : `£${Math.abs(difference)} missing`}
+                </span>
+              </div>
+            </div>
+            {difference !== 0 && (
+              <p className="text-xs text-red-500 text-center mt-2">
+                {difference > 0
+                  ? `Cash-outs exceed buy-ins by £${difference} — someone may have been over-counted.`
+                  : `Buy-ins exceed cash-outs by £${Math.abs(difference)} — chips may be unaccounted for.`}
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Player Results */}
         <div className="px-4 pt-4 max-w-2xl mx-auto w-full">
           <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
